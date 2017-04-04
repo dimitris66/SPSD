@@ -1,0 +1,61 @@
+SPSD
+
+Main function:
+/autofs/cluster/manoach/K24_MEG_EEG_Study/Code/Spindle_Detection_Algorithms/SPSD/ndehghani_detect_spindles.m
+
+It calls:
+GioAdaptation/fun_ndehghani_detect_spindles_v1_Test2.m
+or
+fun_ndehghani_detect_spindles_v1_Nima.m
+
+fun_ndehghani_detect_spindles_v1_Nima.m calls 
+Nima's implementation
+/autofs/cluster/manoach/K24_MEG_EEG_Study/Code/Spindle_Detection_Algorithms/SPSD/SPSD_tally_GD.m
+
+
+Make clear why 
+fun_ndehghani_detect_spindles_v1_Test2 & 
+fun_ndehghani_detect_spindles_v1_Nima
+are differrent?*
+
+*Focus on fun_ndehghani_detect_spindles_v1_Nima for now
+
+How the parameters are tuned?
+
+See how to compare our algorithm with fun_ndehghani_detect_spindles_v1_Nima
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/autofs/cluster/manoach/K24_MEG_EEG_Study/Code/Nimas_algo
+
+
+

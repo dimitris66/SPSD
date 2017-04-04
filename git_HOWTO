@@ -1,0 +1,25 @@
+git clone https://github.com/dimitris66/SPSD.git
+
+git status
+
+git add [file]
+git commit
+git push origin master
+git pull --all
+
+> Create new branch:
+git branch [new_branch_name]
+git checkout [new_branch_name]*
+
+> Merge changes:
+git checkout master
+git merge [new_branch_name]*
+
+git branch -d [new_branch_name]*
+
+> Add changes from last commit to master to another branch
+git checkout [branch]
+git cherry-pick master
+
+> Deleted files
+git ls-files --deleted -z | xargs -0 git rm 
