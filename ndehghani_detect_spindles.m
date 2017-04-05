@@ -1,7 +1,9 @@
 % clear all; close all; clc
 
 addpath('/cluster/manoach/Dimitris/Matlab_Scripts/Preprocessing_Pipeline');
-addpath(genpath('/cluster/manoach/K24_MEG_EEG_Study/Code'));
+addpath(genpath('/cluster/manoach/K24_MEG_EEG_Study/Code/Spindle_Detection_Algorithms/depedencies'));
+
+addpath(genpath('~/gitcode/SPSD'));
 
 % cd '/cluster/manoach/K24_MEG_EEG_Study/Code/Nimas_algo'
 

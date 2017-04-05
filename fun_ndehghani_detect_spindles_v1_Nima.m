@@ -49,8 +49,9 @@ size(Power)
 switch type
     case 'EEG'
         Power = Power/max(max(abs(Power))); % normalize all channels together
+        [spindle_locs] = SPSD_tally_GD(Power',type);
     otherwise
         Power = Power./repmat(max(abs(Power),[],2),1,size(Power,2)); % normalize each channel independently
+        [spindle_locs] = SPSD_tally_GD_meg(Power',type);
 end
 
-[spindle_locs] = SPSD_tally_GD(Power',type);

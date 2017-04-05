@@ -34,13 +34,22 @@ display ('finding peaks bigger than the threshold...')
 spsdmax.z= find(spsdmax.val>(std2(spsd_data)*stdthresh)); % ****
 % spsdmax.z= find(spsdmax.val>(std(spsdmax.val)*stdthresh)); % ****
 
+% MEG
+for i =1:bb;
+    [lmvall,indd] = lmax(spsd_data(:,i),maximafilt);
+    spsdmax.val = [spsdmax.val; lmvall];                            
+    spsdmax.ind = [spsdmax.ind; indd];                            
+end
+display ('finding peaks bigger than the threshold...')
+spsdmax.z= find(spsdmax.val>(std2(spsd_data)*stdthresh)); % ****
+
 
 %------------------section 2: 
 display('finding the number of peaks per sample point...')
 ipeak=[];
 for i=1:aa
     ipeak.ind{i} = find(spsdmax.ind(spsdmax.z) == i);
-    ipeak.size(i) = length(ipeak.ind{i});
+    ipeak.size(i) = length(ipeak.ind{i});    
 end    
 
 

@@ -9,7 +9,7 @@
 %% Input:
 % spsd_data: [timepoints]x[channels]
 % type : string  e.g., 'EEG','MEG'
-function [spindles] = SPSD_tally_GD(spsd_data,type)
+function [spindles] = SPSD_tally_GD_meg(spsd_data,type)
 
 maximafilt = 5; % number of passes of short moving avg for getting rid of small peaks
 selectmaximafilt = 10; % The number of passes of short moving avg for getting rid of small "selected" picks
@@ -34,12 +34,45 @@ display ('finding peaks bigger than the threshold...')
 spsdmax.z= find(spsdmax.val>(std2(spsd_data)*stdthresh)); % ****
 % spsdmax.z= find(spsdmax.val>(std(spsdmax.val)*stdthresh)); % ****
 
+% MEG
+spsdmax.val=cell(1,bb);
+spsdmax.ind=cell(1,bb);
+for i =1:bb;
+    [lmvall,indd] = lmax(spsd_data(:,i),maximafilt);
+    spsdmax.val{i} = lmvall;                            
+    spsdmax.ind{i} = indd;                            
+end
+display ('finding peaks bigger than the threshold...')
+
+spsd_data_std = std(spsd_data);
+spsdmax.z = cell(1,bb);
+for i=1:bb
+    spsdmax.z{i} = find(spsdmax.val{i}>(spsd_data_std(i)*stdthresh)); % indices of ("valid") maxima for every channel
+end
 
 %------------------section 2: 
+% % % display('finding the number of peaks per sample point...')
+% % % ipeak=[];
+% % % for i=1:aa
+% % %     tmp = [];
+% % %     for j=1:bb
+% % %          tmp = [tmp find(spsdmax.ind{j}(spsdmax.z{j}) == i)];
+% % %     end
+% % %     ipeak.ind{i} = tmp;
+% % %     ipeak.size(i) = length(ipeak.ind{i});
+% % % end    
+
+
 display('finding the number of peaks per sample point...')
 ipeak=[];
 for i=1:aa
-    ipeak.ind{i} = find(spsdmax.ind(spsdmax.z) == i);
+    tmp = [];
+    for j=1:bb
+        if ~isempty(find(spsdmax.ind{j}(spsdmax.z{j}) == i, 1))
+            tmp = [tmp j];
+        end
+    end
+    ipeak.ind{i} = tmp;
     ipeak.size(i) = length(ipeak.ind{i});
 end    
 
@@ -65,7 +98,7 @@ subplot(3,1,2)
 hold on
 for i =1:bb;
     [lmvall,indd] = lmax(spsd_data(:,i),maximafilt);
-    plot(indd(lmvall>(std2(spsd_data)*stdthresh)),lmvall(lmvall>(std2(spsd_data)*stdthresh)),'r*')  
+    plot(indd(lmvall>(spsd_data_std(bb)*stdthresh)),lmvall(lmvall>(spsd_data_std(bb)*stdthresh)),'r*')  
 %     plot(indd(lmvall>(std(lmvall)*stdthresh)),lmvall(lmvall>(std(lmvall)*stdthresh)),'r*')
 end
 %axis tight
