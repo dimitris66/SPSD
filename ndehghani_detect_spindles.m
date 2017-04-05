@@ -2,6 +2,7 @@
 
 addpath('/cluster/manoach/Dimitris/Matlab_Scripts/Preprocessing_Pipeline');
 addpath(genpath('/cluster/manoach/K24_MEG_EEG_Study/Code/Spindle_Detection_Algorithms/depedencies'));
+addpath('/cluster/manoach/K24_MEG_EEG_Study/Code/');
 
 addpath(genpath('~/gitcode/SPSD'));
 

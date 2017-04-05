@@ -1,5 +1,7 @@
 git clone https://github.com/dimitris66/SPSD.git
 
+cd to the local branch folder 
+
 git status
 
 git add [file]
